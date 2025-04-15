@@ -93,3 +93,31 @@ for (contact of threeContacts) {
 // Bonus: ITERATION 4 - Add Random Contacts
 
 // Your code goes here ...
+function addRandomContact() {
+  const randomButton = document.querySelector("#btn-add-random");
+  randomButton.addEventListener("click", function() {
+    const randomNumber = Math.floor(Math.random() * contacts.length);
+    const newRandomContact = contacts.splice(randomNumber, 1);
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>
+        <img src="${contact.pictureUrl}" />
+      </td>
+      <td> ${newRandomContact[0].name} </td>
+      <td> ${newRandomContact[0].popularity.toFixed(2)} </td>
+      <td>
+        <button class="btn-delete">Delete</button>
+      </td>
+      <td>
+        <button class="btn-like">
+          <img src="./images/icon.png" alt="like" />
+        </button>
+      </td>
+    `;
+  deleteButton(row);
+  likeButton(row);
+  tableBody.appendChild(row);
+  });
+}
+
+addRandomContact();
